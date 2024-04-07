@@ -45,7 +45,7 @@ public class EdDicomManager {
             String patientName = loadDataSet
                     .getPatientName(new TagId(0x10, 0x10), 0, new PatientName("", "", ""))
                     .getAlphabeticRepresentation();
-            String patientSex = loadDataSet.getString(new TagId(0x10, 0x40), 0, "");
+            String patientGender = loadDataSet.getString(new TagId(0x10, 0x40), 0, "");
             String patientID = loadDataSet.getString(new TagId(0x10, 0x20), 0, "");
             String patientAge = loadDataSet.getString(new TagId(0x10, 0x1010), 0, "");
             String patientBirthDate = loadDataSet.getString(new TagId(0x10, 0x30), 0, "");
@@ -57,7 +57,7 @@ public class EdDicomManager {
             renderBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             renderBitmap.recycle();
-            return new ResponseModel(byteArray, patientName, patientSex, patientID, patientAge, patientBirthDate, patientWeight, patientHeight);
+            return new ResponseModel(byteArray, patientName, patientGender, patientID, patientAge, patientBirthDate, patientWeight, patientHeight);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -20,11 +20,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _dicomViewerPlugin = EdDicomViewer();
-  final typeGroup = const XTypeGroup(
-    label: 'dicom',
-    extensions: <String>['dcm'],
-  );
+  final typeGroup = const XTypeGroup(label: 'dicom', extensions: <String>['dcm'], uniformTypeIdentifiers: ['public.item']);
   Uint8List? decodedData;
+  EdDicomModel? dicomModel;
   @override
   void initState() {
     super.initState();
@@ -33,28 +31,30 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Dicom Viewer'),
+          title: const Text('ED Dicom Viewer'),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ElevatedButton(
-              onPressed: () async {
-                final XFile? file = await openFile(acceptedTypeGroups: <XTypeGroup>[typeGroup]);
-
-                final Directory tempDir = await getTemporaryDirectory();
-                var newFile = File('${tempDir.path}/example2.dcm')..writeAsBytesSync(await file!.readAsBytes());
-                print(newFile.path);
-                _dicomViewerPlugin.getViewDicom(newFile.path).then((value) {
-                  EdDicomModel dicomModel = EdDicomModel.fromJson(jsonDecode(value));
-                  print(dicomModel.toString());
-                  setState(() {
-                    decodedData = Uint8List.fromList(dicomModel.decodedBytes);
+            Center(
+              child: ElevatedButton(
+                onPressed: () async {
+                  final XFile? file = await openFile(acceptedTypeGroups: <XTypeGroup>[typeGroup]);
+                  final Directory tempDir = await getTemporaryDirectory();
+                  var newFile = File('${tempDir.path}/example2.dcm')..writeAsBytesSync(await file!.readAsBytes());
+                  _dicomViewerPlugin.getViewDicom(newFile.path).then((value) {
+                    dicomModel = EdDicomModel.fromJson(jsonDecode(value));
+                    setState(() {
+                      decodedData = Uint8List.fromList(dicomModel!.decodedBytes);
+                    });
                   });
-                });
-              },
-              child: const Text("Select File"),
+                },
+                child: const Text("Select File"),
+              ),
             ),
             if (decodedData != null) ...[
               SizedBox(
@@ -63,6 +63,9 @@ class _MyAppState extends State<MyApp> {
                 child: Image.memory(decodedData!),
               ),
             ],
+            Text("Patient Name: ${dicomModel?.patientName}"),
+            Text("Patient Age: ${dicomModel?.patientAge}"),
+            Text("Patient Gender: ${dicomModel?.patientGender}"),
           ],
         ),
       ),

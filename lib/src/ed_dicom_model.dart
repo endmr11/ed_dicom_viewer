@@ -1,7 +1,7 @@
 class EdDicomModel {
   final List<int> decodedBytes;
   final String patientName;
-  final String patientSex;
+  final String patientGender;
   final String patientID;
   final String patientAge;
   final String patientBirthDate;
@@ -11,7 +11,7 @@ class EdDicomModel {
   EdDicomModel({
     required this.decodedBytes,
     required this.patientName,
-    required this.patientSex,
+    required this.patientGender,
     required this.patientID,
     required this.patientAge,
     required this.patientBirthDate,
@@ -23,7 +23,7 @@ class EdDicomModel {
     return EdDicomModel(
       decodedBytes: json['decodedBytes'].cast<int>(),
       patientName: json['patientName'],
-      patientSex: json['patientSex'],
+      patientGender: json['patientGender'],
       patientID: json['patientID'],
       patientAge: json['patientAge'],
       patientBirthDate: json['patientBirthDate'],
@@ -34,6 +34,6 @@ class EdDicomModel {
 
   @override
   String toString() {
-    return 'EdDicomModel{patientName: $patientName, patientSex: $patientSex, patientID: $patientID, patientAge: $patientAge, patientBirthDate: $patientBirthDate, patientWeight: $patientWeight, patientHeight: $patientHeight}';
+    return 'EdDicomModel{patientName: $patientName, patientGender: $patientGender, patientID: $patientID, patientAge: $patientAge, patientBirthDate: $patientBirthDate, patientWeight: $patientWeight, patientHeight: $patientHeight}';
   }
 }

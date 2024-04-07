@@ -4,7 +4,7 @@ public class ResponseModel {
     public ResponseModel(
             byte[] decodedBytes,
             String patientName,
-            String patientSex,
+            String patientGender,
             String patientID,
             String patientAge,
             String patientBirthDate,
@@ -13,7 +13,7 @@ public class ResponseModel {
     ) {
         this.decodedBytes = decodedBytes;
         this.patientName = patientName;
-        this.patientSex = patientSex;
+        this.patientGender = patientGender;
         this.patientID = patientID;
         this.patientAge = patientAge;
         this.patientBirthDate = patientBirthDate;
@@ -23,7 +23,7 @@ public class ResponseModel {
 
     private final byte[] decodedBytes;
     private final String patientName;
-    private final String patientSex;
+    private final String patientGender;
     private final String patientID;
     private final String patientAge;
     private final String patientBirthDate;
@@ -38,8 +38,8 @@ public class ResponseModel {
         return decodedBytes;
     }
 
-    public String getPatientSex() {
-        return patientSex;
+    public String getpatientGender() {
+        return patientGender;
     }
 
     public String getPatientID() {
