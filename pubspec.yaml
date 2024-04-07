@@ -1,6 +1,6 @@
 name: ed_dicom_viewer
 description: It is used to view .dcm (Dicom) files for flutter. Android only for now.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/endmr11/ed_dicom_viewer
 
 environment:
