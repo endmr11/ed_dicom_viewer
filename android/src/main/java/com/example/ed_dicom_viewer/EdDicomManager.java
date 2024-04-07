@@ -26,7 +26,7 @@ public class EdDicomManager {
             CodecFactory.setMaximumImageSize(1000, 4000);
             InputStream stream = new ByteArrayInputStream(fileBytes);
             PipeStream imebraPipe = new PipeStream(32000);
-            Thread pushThread = new Thread(new PushToImebraPipe(imebraPipe, stream));
+            Thread pushThread = new Thread(new ImebraPipeStream(imebraPipe, stream));
             pushThread.start();
             DataSet loadDataSet = CodecFactory.load(new StreamReader(imebraPipe.getStreamInput()));
             Image dicomFile = loadDataSet.getImageApplyModalityTransform(0);

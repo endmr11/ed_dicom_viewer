@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class PushToImebraPipe implements Runnable {
+public class ImebraPipeStream implements Runnable {
 
     private PipeStream mImebraPipe;
     private InputStream mStream;
 
-    public PushToImebraPipe(com.imebra.PipeStream pipe, InputStream stream) {
+    public ImebraPipeStream(com.imebra.PipeStream pipe, InputStream stream) {
         mImebraPipe = pipe;
         mStream = stream;
     }
@@ -35,6 +35,7 @@ public class PushToImebraPipe implements Runnable {
             }
         }
         catch(IOException e) {
+            e.printStackTrace();
         }
         finally {
             pipeWriter.delete();
