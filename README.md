@@ -1,10 +1,14 @@
 # ED Dicom Viewer
 
 ## <span style="color: red"> For now it only supports Android. iOS coming soon! </span>
+
 ED Dicom Viewer is an innovative tool designed to effectively process and analyze DICOM files on the Flutter platform. This comprehensive solution stands out with its ability to easily read basic DICOM data such as patient information, as well as convert MR images contained in the files into Flutter compatible images. ED Dicom Viewer is ideal for increasing efficiency in your medical imaging projects and providing rich image processing capabilities in Flutter-based applications.Imebra SDK was used for Android.
 
 [![pubdev](https://img.shields.io/badge/pub-ed_dicom_viewer-blue)](https://pub.dev/packages/ed_dicom_viewer)
 
+<div align="center">
+<img src="doc_asset/ss-min.jpeg" width="400" height="400">
+</div>
 
 ## Installation
 
